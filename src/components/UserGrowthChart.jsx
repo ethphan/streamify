@@ -37,7 +37,6 @@ const UserGrowthChart = () => {
         800, 1200, 1700, 2200, 2700, 3200, 3700, 4200, 4700, 5200, 5700, 6200,
       ],
     };
-    console.log("data", data);
     if (data) {
       setChartData({
         labels: data.labels,
@@ -63,7 +62,12 @@ const UserGrowthChart = () => {
     return null;
   }
 
-  return <Line data={chartData} />;
+  return (
+    <div className="section">
+      <h3 className="header">User Growth</h3>
+      <Line data={chartData} />
+    </div>
+  );
 };
 
 export default UserGrowthChart;

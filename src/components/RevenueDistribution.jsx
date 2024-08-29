@@ -20,7 +20,14 @@ const RevenueDistribution = () => {
     ],
   };
 
-  return <Pie data={chartData} />;
+  return (
+    <div className="section">
+      <h3 className="header">Revenue Distribution</h3>
+      <div className="revenue-pie-chart-ctn">
+        <Pie data={chartData} />
+      </div>
+    </div>
+  );
 };
 
 export default RevenueDistribution;

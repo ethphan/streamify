@@ -23,28 +23,31 @@ const DataTable = () => {
   };
 
   return (
-    <table className="min-w-full bg-white border border-gray-300">
-      <thead>
-        <tr>
-          <th onClick={() => handleSort("songName")}>Song Name</th>
-          <th onClick={() => handleSort("artist")}>Artist</th>
-          <th onClick={() => handleSort("dateStreamed")}>Date Streamed</th>
-          <th onClick={() => handleSort("streamCount")}>Stream Count</th>
-          <th>User ID</th>
-        </tr>
-      </thead>
-      <tbody>
-        {sortedData.map((row, index) => (
-          <tr key={index}>
-            <td>{row.songName}</td>
-            <td>{row.artist}</td>
-            <td>{row.dateStreamed}</td>
-            <td>{row.streamCount}</td>
-            <td>{row.userId}</td>
+    <div className="section">
+      <h3 className="header">Data Table</h3>
+      <table className="data-table">
+        <thead>
+          <tr className="data-table-row">
+            <th onClick={() => handleSort("songName")}>Song Name</th>
+            <th onClick={() => handleSort("artist")}>Artist</th>
+            <th onClick={() => handleSort("dateStreamed")}>Date Streamed</th>
+            <th onClick={() => handleSort("streamCount")}>Stream Count</th>
+            <th>User ID</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {sortedData.map((row, index) => (
+            <tr key={index} className="data-table-row">
+              <td>{row.songName}</td>
+              <td>{row.artist}</td>
+              <td>{row.dateStreamed}</td>
+              <td>{row.streamCount}</td>
+              <td>{row.userId}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 

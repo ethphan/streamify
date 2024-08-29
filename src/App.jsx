@@ -17,10 +17,10 @@ function App() {
   return (
     <div className="App">
       <KeyMetrics metrics={metrics} />
-      <DataTable />
       <RevenueDistribution />
       <Top5StreamedSongs />
       <UserGrowthChart />
+      <DataTable />
     </div>
   );
 }

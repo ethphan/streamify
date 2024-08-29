@@ -28,7 +28,12 @@ const Top5StreamedSongs = () => {
     ],
   };
 
-  return <Bar data={chartData} />;
+  return (
+    <div className="section">
+      <h3 className="header">Revenue Distribution</h3>
+      <Bar data={chartData} />
+    </div>
+  );
 };
 
 export default Top5StreamedSongs;
