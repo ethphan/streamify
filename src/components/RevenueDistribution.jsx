@@ -1,12 +1,13 @@
 import React, { useMemo } from "react";
 import { Pie } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { useDashboard } from "../context/DashBoardContext";
+import { useDashboard } from "../hooks/useDashboard";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const RevenueDistribution = () => {
   const { revenueDistribution } = useDashboard();
+
   const chartData = useMemo(
     () => ({
       labels: revenueDistribution.labels,
@@ -24,7 +25,7 @@ const RevenueDistribution = () => {
     <div className="section">
       <h3 className="header">Revenue Distribution</h3>
       <div className="revenue-pie-chart-ctn">
-        <Pie data={chartData} />
+        <Pie data-testid="revenue-distribution-chart" data={chartData} />
       </div>
     </div>
   );

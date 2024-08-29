@@ -6,7 +6,7 @@ import {
   CategoryScale,
   LinearScale,
 } from "chart.js";
-import { useDashboard } from "../context/DashBoardContext";
+import { useDashboard } from "../hooks/useDashboard";
 
 ChartJS.register(BarElement, CategoryScale, LinearScale);
 

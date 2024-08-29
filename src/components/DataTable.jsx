@@ -1,17 +1,21 @@
-import React, { useState } from "react";
-import { useDashboard } from "../context/DashBoardContext";
+import React, { useMemo, useState } from "react";
+import { useDashboard } from "../hooks/useDashboard";
 
 const DataTable = () => {
   const [sortColumn, setSortColumn] = useState("date");
   const [sortOrder, setSortOrder] = useState("asc");
   const { table } = useDashboard();
 
-  const sortedData = [...table].sort((a, b) => {
-    if (sortOrder === "asc") {
-      return a[sortColumn] > b[sortColumn] ? 1 : -1;
-    }
-    return a[sortColumn] < b[sortColumn] ? 1 : -1;
-  });
+  const sortedData = useMemo(
+    () =>
+      [...table].sort((a, b) => {
+        if (sortOrder === "asc") {
+          return a[sortColumn] > b[sortColumn] ? 1 : -1;
+        }
+        return a[sortColumn] < b[sortColumn] ? 1 : -1;
+      }),
+    [table, sortColumn, sortOrder]
+  );
 
   const handleSort = (column) => {
     setSortColumn(column);

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -7,8 +7,7 @@ import {
   LinearScale,
   PointElement,
 } from "chart.js";
-import { userGrowthData } from "../data/dashboardData";
-import { useDashboard } from "../context/DashBoardContext";
+import { useDashboard } from "../hooks/useDashboard";
 
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement);
 
@@ -39,7 +38,9 @@ const UserGrowthChart = () => {
   return (
     <div className="section">
       <h3 className="header">User Growth</h3>
-      <Line data={chartData} />
+      <canvas data-testid="user-growth-chart">
+        <Line data={chartData} />
+      </canvas>
     </div>
   );
 };
