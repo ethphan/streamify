@@ -1,16 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { tableData } from "../data";
+import React, { useState } from "react";
+import { useDashboard } from "../context/DashBoardContext";
 
 const DataTable = () => {
   const [sortColumn, setSortColumn] = useState("date");
   const [sortOrder, setSortOrder] = useState("asc");
-  const [data, setData] = useState([]);
+  const { table } = useDashboard();
 
-  useEffect(() => {
-    setData(tableData);
-  }, []);
-
-  const sortedData = [...data].sort((a, b) => {
+  const sortedData = [...table].sort((a, b) => {
     if (sortOrder === "asc") {
       return a[sortColumn] > b[sortColumn] ? 1 : -1;
     }

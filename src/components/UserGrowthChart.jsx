@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -7,60 +7,34 @@ import {
   LinearScale,
   PointElement,
 } from "chart.js";
-import { userGrowthData } from "../data";
+import { userGrowthData } from "../data/dashboardData";
+import { useDashboard } from "../context/DashBoardContext";
 
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement);
 
 const UserGrowthChart = () => {
-  const [chartData, setChartData] = useState(null);
+  const { userGrowth } = useDashboard();
 
-  useEffect(() => {
-    const data = {
-      labels: [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
+  const chartData = useMemo(
+    () => ({
+      labels: userGrowth.labels,
+      datasets: [
+        {
+          label: "Total Users",
+          data: userGrowth.totalUsers,
+          borderColor: "blue",
+          fill: false,
+        },
+        {
+          label: "Active Users",
+          data: userGrowth.activeUsers,
+          borderColor: "green",
+          fill: false,
+        },
       ],
-      totalUsers: [
-        1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500,
-      ],
-      activeUsers: [
-        800, 1200, 1700, 2200, 2700, 3200, 3700, 4200, 4700, 5200, 5700, 6200,
-      ],
-    };
-    if (data) {
-      setChartData({
-        labels: data.labels,
-        datasets: [
-          {
-            label: "Total Users",
-            data: data.totalUsers,
-            borderColor: "blue",
-            fill: false,
-          },
-          {
-            label: "Active Users",
-            data: data.activeUsers,
-            borderColor: "green",
-            fill: false,
-          },
-        ],
-      });
-    }
-  }, []);
-
-  if (!chartData) {
-    return null;
-  }
+    }),
+    [userGrowth]
+  );
 
   return (
     <div className="section">
